@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,12 +14,15 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import { AuthContext } from "../../provider/AuthProvider";
 
 const pages = ['Home','Surveys','Pricing'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Navbar = () => {
+    
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const {user, logOut} = useContext(AuthContext);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -130,10 +134,12 @@ const Navbar = () => {
                             ))}
                         </Box>
                             
-                        <Box sx={{ flexGrow: 0 }}>
+                        {
+                            user ? 
+                            <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                    <Avatar alt="Remy Sharp" src={user?.photoURL} />
                                 </IconButton>
                             </Tooltip>
                             <Menu
@@ -159,6 +165,12 @@ const Navbar = () => {
                                 ))}
                             </Menu>
                         </Box>
+                            :
+                            <Link to={"/login"}>
+                                <button type="button" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Log in</button>
+
+                            </Link>
+                        }
                     </Toolbar>
                 </Container>
             </AppBar>
