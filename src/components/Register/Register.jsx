@@ -6,12 +6,14 @@ import { getAuth, updateProfile } from "firebase/auth";
 import Swal from 'sweetalert2'
 import { AuthContext } from "../../provider/AuthProvider";
 import app from "../../FirebaseConfig";
+import useAxiosURL from "../../hooks/UseaxiosURL";
 const Register = () => {
     const [error, setError] = useState(null)
     const { createAccountWithPassword } = useContext(AuthContext);
     const navigate = useNavigate()
     const location = useLocation()
     const auth = getAuth(app)
+    const axiosUrl = useAxiosURL();
 
 
     const handleRegisterUser = (e) => {
@@ -43,13 +45,28 @@ const Register = () => {
                     displayName: name,
                     photoURL: image
                 })
-                navigate(location?.state ? location.state : "/")
-                Swal.fire(
-                    'You can Log in now!',
-                    'Registartion successful!',
-                    'success'
-                )
-                form.reset()
+                .then(() => {
+                    const userInfo = {
+                        name: name,
+                        email: email,
+                        image: image,
+                       
+
+                    }
+                    axiosUrl.post('/users', userInfo)
+                    .then(res => {
+                        if(res.data.insertedId) {
+                            form.reset()
+                            Swal.fire(
+                                'You can Log in now!',
+                                'Registartion successful!',
+                                'success'
+                            )
+                        }
+                    });
+                    navigate(location?.state ? location.state : "/")
+                })
+                
 
             })
             .catch(error => {
