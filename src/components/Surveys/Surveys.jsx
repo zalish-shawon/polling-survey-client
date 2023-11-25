@@ -12,6 +12,10 @@ const Surveys = () => {
         } 
     })
 
+   
+
+
+
     return (
         <div>
             <div>
@@ -19,7 +23,7 @@ const Surveys = () => {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 p-10 max-w-[1300px] mx-auto">
                 {
-                    surveys.map(item => <SurveysCard key={item._id} item={item}></SurveysCard>)
+                    surveys.map(item => <SurveysCard key={item._id} item={item} ></SurveysCard>)
                 }
             </div>
         </div>

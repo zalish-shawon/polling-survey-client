@@ -16,6 +16,7 @@ import Stats from './components/DashBoard/Stats.jsx';
 import Users from './components/DashBoard/Users/Users.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SurveyCreate from './components/SurveyCreate/SurveyCreate.jsx';
+import SurveysDetails from './components/Surveys/SurveysDetails.jsx';
 
 const queryClient = new QueryClient()
 
@@ -44,9 +45,15 @@ const router = createBrowserRouter([
         path: "/Surveys",
         element: <Surveys></Surveys>
       },
+      {
+        path: "/details/:id",
+        element: <SurveysDetails></SurveysDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.id}`)
+      }
       
   ]
   },
+  //dashboard
   {
     path: "/dashboard",
     element: <DashBoard></DashBoard>,

@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const SurveyCreate = () => {
     const axiosUrl = useAxiosURL();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const handleCreteSurvey = (e) => {
         e.preventDefault();
@@ -15,37 +15,35 @@ const SurveyCreate = () => {
         const title = form.name.value;
         const category = form.category.value;
         const image = form.image.value;
-        const option1 = form.option1.value;
-        const option2 = form.option2.value;
         const description = form.description.value;
         const surveyData = {
             title,
             category,
             image,
-            option1,
-            option2,
+            yesVotes: 0,
+            noVotes: 0,
             description,
-            like : 0,
+            like: 0,
             dislike: 0,
             email: user.email,
         }
         // console.log(surveyData);
 
         try {
-          axiosUrl.post("/surveys", surveyData)
-        .then( res => {
-            if(res.data.insertedId) {
-                form.reset();
-                Swal.fire(
-                    'Welcome!',
-                    'Survey has been added!',
-                    'success'
-                  )
-            }
-        })
-          
-          
-        }catch (error) {
+            axiosUrl.post("/surveys", surveyData)
+                .then(res => {
+                    if (res.data.insertedId) {
+                        form.reset();
+                        Swal.fire(
+                            'Welcome!',
+                            'Survey has been added!',
+                            'success'
+                        )
+                    }
+                })
+
+
+        } catch (error) {
             console.log(error.message);
         }
     }
@@ -78,14 +76,7 @@ const SurveyCreate = () => {
                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Survey ImageURL</label>
                                     <input type="text" name="image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" />
                                 </div>
-                                <div class="w-full">
-                                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Option 1</label>
-                                    <input type="text" name="option1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Like yes,no" required="" />
-                                </div>
-                                <div class="w-full">
-                                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Option 2</label>
-                                    <input type="text" name="option2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Like yes,no" required="" />
-                                </div>
+                                
 
 
                                 <div class="sm:col-span-2">
