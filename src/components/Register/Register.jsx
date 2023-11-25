@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import { useContext } from "react";
 import { useState } from "react";
@@ -50,6 +51,7 @@ const Register = () => {
                         name: name,
                         email: email,
                         image: image,
+                        role: 'user',
                        
 
                     }
