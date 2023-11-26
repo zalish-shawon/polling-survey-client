@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unknown-property */
 import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import useAxiosURL from "../../hooks/UseaxiosURL";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import { AiFillDislike, AiFillLike } from "react-icons/ai";
+
 
 
 const SurveysDetails = () => {
@@ -24,7 +25,7 @@ const SurveysDetails = () => {
     })
 
     const findVoter = votes.filter(find => find.email === user?.email)
-    console.log(findVoter.length);
+    // console.log(findVoter.length);
 
     const handleVote = (e) => {
         e.preventDefault();
@@ -54,46 +55,54 @@ const SurveysDetails = () => {
         }
     }
 
-        const handleComment = (e) => {
-            e.preventDefault();
-            const form = e.target
-            const comment = form.comment.value
-            const commentData = {
-                name: user.displayName,
-                email: user.email,
-                comment,
-            }
-
-            try {
-                axiosUrl.post("/comments", commentData)
-                    .then(res => {
-                        if (res.data.insertedId) {
-                            form.reset();
-                            refetch();
-                            Swal.fire(
-                                'Comment added',
-                                
-                            )
-                        }
-                    })
-    
-    
-            } catch (error) {
-                console.log(error.message);
-            }
+    const handleComment = (e) => {
+        e.preventDefault();
+        const form = e.target
+        const comment = form.comment.value
+        const commentData = {
+            name: user.displayName,
+            email: user.email,
+            comment,
         }
 
+        try {
+            axiosUrl.post("/comments", commentData)
+                .then(res => {
+                    if (res.data.insertedId) {
+                        form.reset();
+                        refetch();
+                        Swal.fire(
+                            'Comment added',
 
-        const { data: comments = [], refetch } = useQuery({
-            queryKey: ['comments'],
-            queryFn: async () => {
-                const res = await axiosUrl.get('/comments/')
-                return res.data;
-            }
-        })
+                        )
+                    }
+                })
 
 
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
 
+
+    const { data: comments = [], refetch } = useQuery({
+        queryKey: ['comments'],
+        queryFn: async () => {
+            const res = await axiosUrl.get('/comments/')
+            return res.data;
+        }
+    })
+
+
+    const handleReport = (e) => {
+        e.preventDefault();
+        const form = e.target
+        const report = form.report.value 
+        const reportData = {
+            report,
+        }
+        console.log(reportData);
+    }
 
 
 
@@ -101,6 +110,7 @@ const SurveysDetails = () => {
         <div>
             <div>
                 <h2 className="mb-2 text-center text-5xl text-blue-400 mt-10">Details</h2>
+               
             </div>
             <div>
                 <div class="mx-auto px-4 max-w-[900px]">
@@ -133,14 +143,15 @@ const SurveysDetails = () => {
 
                                 {
                                     findVoter.length >= 1 ?
-                                        <h1 className="text-red-500 font-bold text-center p-4">User has already voted</h1>
+                                        <Link to={`/results/${_id}`}>
+                                            <h1 className="text-red-500 font-bold text-center p-4">Voted see result</h1>
+                                        </Link>
+
                                         :
                                         <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-5 w-full">Submit</button>
                                 }
 
-
                             </form>
-
 
                         </div>
 
@@ -150,22 +161,22 @@ const SurveysDetails = () => {
                 <div>
                     <h1 className="font-bold text-2xl text-center">Comment here</h1>
                     <div className="mt-2">
-                       <form onSubmit={handleComment} action="">
-                       <textarea name="comment" id="message" rows="4" class="block p-2.5 w-[900px] mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
-                        <div className="flex justify-center mt-2">
-                        <button type="submit" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add comment</button>
-                        </div>
-                       </form>
+                        <form onSubmit={handleComment} action="">
+                            <textarea required name="comment" id="message" rows="4" class="block p-2.5 w-[900px] mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+                            <div className="flex justify-center mt-2">
+                                <button type="submit" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add comment</button>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
                 <div className="w-[900px] mx-auto">
                     {
-                        comments.map(comment => 
-                        <div key={comment._id}>
-                            <h1 className="font-semibold"><span className="font-bold">Name:</span>  {comment.name} </h1>
-                            <p><span className="font-bold">Comment:</span> {comment.comment}</p>
-                        </div>)
+                        comments.map(comment =>
+                            <div key={comment._id}>
+                                <h1 className="font-semibold"><span className="font-bold">Name:</span>  {comment.name} </h1>
+                                <p><span className="font-bold">Comment:</span> {comment.comment}</p>
+                            </div>)
                     }
                 </div>
             </div>
