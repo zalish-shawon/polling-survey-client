@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { useContext, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import useAxiosURL from "../../hooks/UseaxiosURL";
 import Swal from "sweetalert2";
@@ -14,7 +14,8 @@ const SurveysDetails = () => {
     const { user } = useContext(AuthContext)
     const axiosUrl = useAxiosURL();
     const [vote, setVote] = useState('');
-    const { _id, title, image, description, like, dislike } = surveyData;
+    const navigate = useNavigate();
+    const { _id, title, image, description } = surveyData;
 
     const { data: votes = [] } = useQuery({
         queryKey: ['votes'],
@@ -24,7 +25,7 @@ const SurveysDetails = () => {
         }
     })
 
-    const findVoter = votes.filter(find => find.email === user?.email)
+    // const findVoter = votes.filter(find => find.email === user?.email)
     // console.log(findVoter.length);
 
     const handleVote = (e) => {
@@ -46,6 +47,7 @@ const SurveysDetails = () => {
                             'Successfully voted your survey',
                             'success'
                         )
+                        navigate(`/results/${_id}`)
                     }
                 })
 
@@ -97,7 +99,7 @@ const SurveysDetails = () => {
     const handleReport = (e) => {
         e.preventDefault();
         const form = e.target
-        const report = form.report.value 
+        const report = form.report.value
         const reportData = {
             report,
         }
@@ -110,7 +112,7 @@ const SurveysDetails = () => {
         <div>
             <div>
                 <h2 className="mb-2 text-center text-5xl text-blue-400 mt-10">Details</h2>
-               
+
             </div>
             <div>
                 <div class="mx-auto px-4 max-w-[900px]">
@@ -140,16 +142,8 @@ const SurveysDetails = () => {
 
                                 </select>
 
+                                <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-5 w-full">Submit</button>
 
-                                {
-                                    findVoter.length >= 1 ?
-                                        <Link to={`/results/${_id}`}>
-                                            <h1 className="text-red-500 font-bold text-center p-4">Voted see result</h1>
-                                        </Link>
-
-                                        :
-                                        <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-5 w-full">Submit</button>
-                                }
 
                             </form>
 
@@ -173,14 +167,14 @@ const SurveysDetails = () => {
                 <div className="w-[900px] mx-auto">
                     {
                         comments.map(comment =>
-                            <div key={comment._id}>
+                            <div className="border-r border-b border-l border-gray-400 lg:border-l lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal mb-1" key={comment._id}>
                                 <h1 className="font-semibold"><span className="font-bold">Name:</span>  {comment.name} </h1>
                                 <p><span className="font-bold">Comment:</span> {comment.comment}</p>
                             </div>)
                     }
                 </div>
             </div>
-
+            
         </div>
     );
 };

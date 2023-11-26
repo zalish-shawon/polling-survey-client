@@ -1,12 +1,12 @@
 /* eslint-disable react/no-unknown-property */
 
+import { Link } from "react-router-dom";
 import Faq from "./FAQ/Faq";
 import Testimonial from "./Testimonial/Testimonial";
 
 
 
 const Home = () => {
-
 
   return (
     <div className="lg:p-16 lg:pt-3">
@@ -40,13 +40,15 @@ const Home = () => {
               >
                 Explore Now
               </a>
+              <Link to={'/pricing'}>
               <a
                 href="/"
                 aria-label=""
                 className="inline-flex items-center font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-700"
               >
-                Learn more
+                Become a proUser
               </a>
+              </Link>
             </div>
           </div>
         </div>

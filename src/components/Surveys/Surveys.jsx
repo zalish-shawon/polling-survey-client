@@ -12,10 +12,6 @@ const Surveys = () => {
         } 
     })
 
-   
-
-
-
     return (
         <div>
             <div>
