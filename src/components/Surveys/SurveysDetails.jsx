@@ -6,6 +6,7 @@ import useAxiosURL from "../../hooks/UseaxiosURL";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import { AiFillDislike, AiFillLike } from "react-icons/ai";
+import useUsers from "../../hooks/useUsers";
 
 
 
@@ -13,9 +14,13 @@ const SurveysDetails = () => {
     const surveyData = useLoaderData();  
     const { user } = useContext(AuthContext)
     const axiosUrl = useAxiosURL();
+    const allUser = useUsers();
     const [vote, setVote] = useState('');
     const navigate = useNavigate();
     const { _id, title, image, description } = surveyData;
+
+    const proUser = allUser.find(item => item.role === 'pro-user'  && item.email === user?.email);
+    
 
     const { data: votes = [] } = useQuery({
         queryKey: ['votes'],
@@ -157,7 +162,9 @@ const SurveysDetails = () => {
                     </div>
 
                 </div>
-                <div>
+                {
+                    proUser ? 
+                    <div>
                     <h1 className="font-bold text-2xl text-center">Comment here</h1>
                     <div className="mt-2">
                         <form onSubmit={handleComment} action="">
@@ -169,6 +176,9 @@ const SurveysDetails = () => {
 
                     </div>
                 </div>
+                :
+                <h1 className="text-blue-800 text-lg text-center font-bold mt-2 mb-2">For comments here you need to active Pro User</h1>
+                }
                 <div className="w-[900px] mx-auto">
                     {
                         comments.map(comment =>

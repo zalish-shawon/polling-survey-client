@@ -6,7 +6,7 @@ import Stats from './Stats';
 const DashBoard = () => {
     return (
         <div>
-            <div class="relative overflow-hidden max-h-screen">
+            <div class=" relative overflow-hidden max-h-screen">
                 <header class="fixed right-0 top-0 left-60  py-3 px-4 h-16">
                     <div class="max-w-4xl mx-auto">
                         <div class="flex items-center justify-center">
@@ -17,6 +17,7 @@ const DashBoard = () => {
                     </div>
                 </header>
 
+                <div className=''>
                 <aside class="fixed inset-y-0 left-0 bg-white shadow-md max-h-screen w-60">
                     <div class="flex flex-col justify-between h-full">
                         <div class="flex-grow">
@@ -76,6 +77,7 @@ const DashBoard = () => {
                     
                     <Outlet></Outlet>
                 </main>
+                </div>
             </div>
 
         </div>

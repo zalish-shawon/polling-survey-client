@@ -3,12 +3,12 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosURL from "../../hooks/UseaxiosURL";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
-import { useLoaderData } from "react-router-dom";
+import useUsers from "../../hooks/useUsers";
 
 const CheckoutForm = () => {
     const stripe = useStripe();
-    const userData = useLoaderData();
-    console.log(userData);
+    const allUsers = useUsers();
+    // console.log(allUsers);
     const elements = useElements();
     const axiosUrl = useAxiosURL();
     const {user} = useContext(AuthContext);
@@ -16,6 +16,8 @@ const CheckoutForm = () => {
     const [clientSecret, setClientSecret] = useState('');
     const price = 10;
 
+    const currentUserRole = allUsers.find(item => item.email === user?.email);
+   
     const userNewRole = {
         role: 'pro-user',
     }
@@ -68,8 +70,17 @@ const CheckoutForm = () => {
             console.log('confirm error');
           } else {
             console.log('success', paymentIntent);
-            if(paymentIntent.status === 'success') {
-                
+            if(paymentIntent.status === 'succeeded') {
+
+                const payment = {
+                    name: user?.displayName,
+                    email: user?.email,
+                    transactionId: paymentIntent.id,
+                    date: new Date(),
+                }
+
+                axiosUrl.post('/payment', payment)
+                axiosUrl.patch(`/users/${currentUserRole._id}`,userNewRole)
                 Swal.fire(
                     'Welcome to pro-user account',
                     'Payment has been successfully done.',
