@@ -44,7 +44,7 @@ const Home = () => {
               <a
                 href="/"
                 aria-label=""
-                className="inline-flex items-center font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-700"
+                className="inline-flex items-center font-semibold text-white transition-colors duration-200 bg-gray-600 px-6 h-12 hover:text-gray-100 rounded"
               >
                 Become a proUser
               </a>

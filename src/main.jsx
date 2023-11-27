@@ -19,6 +19,8 @@ import SurveyCreate from './components/SurveyCreate/SurveyCreate.jsx';
 import SurveysDetails from './components/Surveys/SurveysDetails.jsx';
 import SurveyResults from './components/SurveyResults/SurveyResults.jsx';
 import Pricing from './components/Pricing/Pricing.jsx';
+import Payment from './components/Payment/Payment.jsx';
+import CheckoutForm from './components/Payment/CheckoutForm.jsx';
 
 const queryClient = new QueryClient()
 
@@ -61,7 +63,12 @@ const router = createBrowserRouter([
         path: "/pricing",
         element: <Pricing></Pricing>
 
-      }
+      },
+      {
+        path: "/payment",
+        element: <Payment></Payment>
+      },
+      
       
   ]
   },

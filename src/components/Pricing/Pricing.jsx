@@ -1,5 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 
+import { Link } from "react-router-dom";
+
 const Pricing = () => {
     return (
         <div className="w-[75%] mx-auto mt-10">
@@ -57,9 +59,11 @@ const Pricing = () => {
                         </li>
                     </ul>
                     <div class="mt-6 rounded-md shadow">
+                        <Link to={'/payment'}>
                         <a  class="flex items-center justify-center px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
                             Start Pro plan
                         </a>
+                        </Link>
                     </div>
                 </div>
             </div>
