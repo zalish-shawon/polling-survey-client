@@ -15,7 +15,25 @@ const UsersTd = ({user, refetch}) => {
         role: 'surveyor',
     }
     const handleAdminRole = (id) => {
-       console.log('clicked admin', id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, make Admin"
+          }).then((result) => {
+            if (result.isConfirmed) {
+            axiosUrl.patch(`/users/${id}`, adminRole)
+              Swal.fire({
+                title: "Success!",
+                text: "Role made Admin successfully",
+                icon: "success"
+              });
+              refetch();
+            }
+          });
     }
 
     const handleSurveyorRole = (id) => {
@@ -30,12 +48,13 @@ const UsersTd = ({user, refetch}) => {
           }).then((result) => {
             if (result.isConfirmed) {
             axiosUrl.patch(`/users/${id}`, surveyorRole)
-            refetch();
+            
               Swal.fire({
                 title: "Success!",
                 text: "Role made surveyor successfully",
                 icon: "success"
               });
+              refetch();
             }
           });
      }
@@ -62,11 +81,17 @@ const UsersTd = ({user, refetch}) => {
                 </td>
                 <td class="px-6 py-4">
                     <div class="relative inline-flex">
-                    <button onClick={() => handleAdminRole(_id)} type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Admin</button>
+                    {
+                        role === "admin"?
+                        <button type="button" disabled class="text-gray-300 bg-white border border-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Admin</button>
+                        :
+                        <button onClick={() => handleAdminRole(_id)} type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Admin</button>
+                    }
 
                     {
-                        role === 'surveyor' ? 
-                        ""
+                        role === 'surveyor'  ? 
+                        <button type="button" disabled class="text-gray-300 bg-white border border-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Surveyor</button>
+                        
                         :
                         <button onClick={() => handleSurveyorRole(_id)} type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Surveyor</button>
                     }

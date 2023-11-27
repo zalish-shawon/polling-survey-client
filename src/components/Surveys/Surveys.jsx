@@ -1,16 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosURL from "../../hooks/UseaxiosURL";
+
 import SurveysCard from "./SurveysCard";
+import useSurveys from "../../hooks/useSurveys";
 
 const Surveys = () => {
-    const axiosUrl = useAxiosURL();
-    const {data: surveys = []} =useQuery({
-        queryKey: ['surveys'],
-        queryFn: async () => {
-            const res = await axiosUrl.get('/surveys')
-            return res.data;
-        } 
-    })
+    const surveys = useSurveys();
 
     return (
         <div>

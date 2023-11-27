@@ -21,6 +21,8 @@ import SurveyResults from './components/SurveyResults/SurveyResults.jsx';
 import Pricing from './components/Pricing/Pricing.jsx';
 import Payment from './components/Payment/Payment.jsx';
 import CheckoutForm from './components/Payment/CheckoutForm.jsx';
+import AllSurveys from './components/Surveys/AllSurveys.jsx';
+import SurveyEdit from './components/Surveys/SurveyEdit.jsx';
 
 const queryClient = new QueryClient()
 
@@ -88,6 +90,16 @@ const router = createBrowserRouter([
       {
         path: "createSurvey",
         element: <SurveyCreate></SurveyCreate>
+      },
+      {
+        path: 'allSurveys',
+        element: <AllSurveys></AllSurveys>
+      },
+      {
+        path: 'updateSurvey/:id',
+        element: <SurveyEdit></SurveyEdit>,
+        loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.id}`)
+
       }
     ]
   }
