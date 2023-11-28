@@ -24,6 +24,7 @@ import CheckoutForm from './components/Payment/CheckoutForm.jsx';
 import AllSurveys from './components/Surveys/AllSurveys.jsx';
 import SurveyEdit from './components/Surveys/SurveyEdit.jsx';
 import ResponseTable from './components/Response/ResponseTable.jsx';
+import Feedback from './components/Surveys/Feedback.jsx';
 
 const queryClient = new QueryClient()
 
@@ -105,6 +106,12 @@ const router = createBrowserRouter([
       {
         path: 'tableResponse',
         element: <ResponseTable></ResponseTable>
+      },
+      {
+        path: 'feedback/:id',
+        element: <Feedback></Feedback>,
+        loader: ({params}) => fetch(`http://localhost:5000/feedback/${params.id}`)
+
       }
     ]
   }

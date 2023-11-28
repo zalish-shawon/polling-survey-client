@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import { AiFillDislike, AiFillLike } from "react-icons/ai";
 import useUsers from "../../hooks/useUsers";
+import { comment } from "postcss";
 
 
 
@@ -70,6 +71,7 @@ const SurveysDetails = () => {
         const form = e.target
         const comment = form.comment.value
         const commentData = {
+            surveyId: _id,
             name: user.displayName,
             email: user.email,
             comment,
@@ -98,11 +100,12 @@ const SurveysDetails = () => {
     const { data: comments = [], refetch } = useQuery({
         queryKey: ['comments'],
         queryFn: async () => {
-            const res = await axiosUrl.get('/comments/')
+            const res = await axiosUrl.get('/comments')
             return res.data;
         }
     })
 
+    const individualComments = comments.filter(item => item.surveyId === _id)
 
     const handleReport = (e) => {
         e.preventDefault();
@@ -184,7 +187,7 @@ const SurveysDetails = () => {
                 }
                 <div className="w-[900px] mx-auto">
                     {
-                        comments.map(comment =>
+                        individualComments.map(comment =>
                             <div className="border-r border-b border-l border-gray-400 lg:border-l lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal mb-1" key={comment._id}>
                                 <h1 className="font-semibold"><span className="font-bold">Name:</span>  {comment.name} </h1>
                                 <p><span className="font-bold">Comment:</span> {comment.comment}</p>
