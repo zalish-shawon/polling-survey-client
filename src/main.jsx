@@ -20,11 +20,10 @@ import SurveysDetails from './components/Surveys/SurveysDetails.jsx';
 import SurveyResults from './components/SurveyResults/SurveyResults.jsx';
 import Pricing from './components/Pricing/Pricing.jsx';
 import Payment from './components/Payment/Payment.jsx';
-import CheckoutForm from './components/Payment/CheckoutForm.jsx';
 import AllSurveys from './components/Surveys/AllSurveys.jsx';
 import SurveyEdit from './components/Surveys/SurveyEdit.jsx';
 import ResponseTable from './components/Response/ResponseTable.jsx';
-import Feedback from './components/Surveys/Feedback.jsx';
+import PaymentsData from './components/Payment/PaymentsData.jsx';
 
 const queryClient = new QueryClient()
 
@@ -108,10 +107,8 @@ const router = createBrowserRouter([
         element: <ResponseTable></ResponseTable>
       },
       {
-        path: 'feedback/:id',
-        element: <Feedback></Feedback>,
-        loader: ({params}) => fetch(`http://localhost:5000/feedback/${params.id}`)
-
+        path: 'paymentsData',
+        element: <PaymentsData></PaymentsData>
       }
     ]
   }

@@ -112,9 +112,22 @@ const SurveysDetails = () => {
         const form = e.target
         const report = form.report.value
         const reportData = {
+            surveyId: _id,
+            reporterName: user.displayName,
             report,
+            date: new Date(),
         }
-        console.log(reportData);
+        axiosUrl.post('/reports', reportData)
+        .then(res => {
+            if (res.data.insertedId) {
+                form.reset();
+                refetch();
+                Swal.fire(
+                    'Report Submitted',
+
+                )
+            }
+        })
     }
 
 
@@ -133,9 +146,18 @@ const SurveysDetails = () => {
                         </div>
                         <span class="bg-red-100 mt-10 ml-4 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">{surveyData.category}</span>
                         <div className="ml-4 mt-3 flex justify-center">
-                            <button type="button" class=" text-xl py-2.5 px-5 me-2 mb-2 font-medium text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">(0)<AiFillLike /></button>
+                            {/* <button type="button" class=" text-xl py-2.5 px-5 me-2 mb-2 font-medium text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">(0)<AiFillLike /></button>
 
-                            <button type="button" class=" text-xl py-2.5 px-5 me-2 mb-2 font-medium text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">(0)<AiFillDislike /></button>
+                            <button type="button" class=" text-xl py-2.5 px-5 me-2 mb-2 font-medium text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">(0)<AiFillDislike /></button> */}
+                            <form onSubmit={handleReport}>
+                            <textarea name="report" id="message" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Any inappropriate things here?..."></textarea>
+
+                            <div className="flex justify-center mt-2">
+                            <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Submit report</button>
+
+
+                            </div>
+                            </form>
 
                         </div>
                         <div class="px-4 py-2 mt-2">
