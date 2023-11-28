@@ -23,6 +23,7 @@ import Payment from './components/Payment/Payment.jsx';
 import CheckoutForm from './components/Payment/CheckoutForm.jsx';
 import AllSurveys from './components/Surveys/AllSurveys.jsx';
 import SurveyEdit from './components/Surveys/SurveyEdit.jsx';
+import ResponseTable from './components/Response/ResponseTable.jsx';
 
 const queryClient = new QueryClient()
 
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
         element: <SurveyEdit></SurveyEdit>,
         loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.id}`)
 
+      },
+      {
+        path: 'tableResponse',
+        element: <ResponseTable></ResponseTable>
       }
     ]
   }

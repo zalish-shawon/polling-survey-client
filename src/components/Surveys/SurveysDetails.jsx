@@ -37,9 +37,12 @@ const SurveysDetails = () => {
         e.preventDefault();
         const form = e.target
         const voteData = {
+            name: title,
+            responderName: user.displayName,
+            email: user.email,
             surveyId: _id,
             vote,
-            email: user.email,
+            date: new Date(),
 
         }
 
@@ -149,7 +152,7 @@ const SurveysDetails = () => {
 
                                 {
                                     findVoter.length >= 1 ?
-                                    <h1 className="text-red-700 text-center border border-red-200 mt-2 font-bold text-lg">Already voted.</h1>
+                                    <h1 className="text-red-700 text-center border border-red-200 mt-2 font-bold text-lg">Already voted. <Link to={`/results/${_id}`}><span className="underline text-blue-500">See Result here</span></Link></h1>
                                     :
                                     <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-5 w-full">Submit</button>
                                 }
