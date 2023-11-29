@@ -25,6 +25,10 @@ import SurveyEdit from './components/Surveys/SurveyEdit.jsx';
 import ResponseTable from './components/Response/ResponseTable.jsx';
 import PaymentsData from './components/Payment/PaymentsData.jsx';
 import ErrorPage from './components/404/ErrorPage.jsx';
+import PrivateRoute from './components/Routes/PrivateRoute.jsx';
+import AdminRoute from './components/Routes/AdminRoute.jsx';
+import SurveyorRoute from './components/Routes/SurveyorRoute.jsx';
+import CombinedRoute from './components/Routes/CombinedRoute.jsx';
 
 const queryClient = new QueryClient()
 
@@ -56,7 +60,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: <SurveysDetails></SurveysDetails>,
+        element: <PrivateRoute><SurveysDetails></SurveysDetails></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.id}`)
       },
       {
@@ -71,7 +75,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/payment",
-        element: <Payment></Payment>
+        element: <PrivateRoute><Payment></Payment></PrivateRoute>
       },
       
       
@@ -88,15 +92,15 @@ const router = createBrowserRouter([
       },
       {
         path: "users",
-        element: <Users></Users> 
+        element: <AdminRoute><Users></Users></AdminRoute>
       },
       {
         path: "createSurvey",
-        element: <SurveyCreate></SurveyCreate>
+        element: <SurveyorRoute><SurveyCreate></SurveyCreate></SurveyorRoute>
       },
       {
         path: 'allSurveys',
-        element: <AllSurveys></AllSurveys>
+        element: <CombinedRoute><AllSurveys></AllSurveys></CombinedRoute>
       },
       {
         path: 'updateSurvey/:id',
@@ -110,7 +114,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'paymentsData',
-        element: <PaymentsData></PaymentsData>
+        element: <AdminRoute><PaymentsData></PaymentsData></AdminRoute>
       }
     ]
   }

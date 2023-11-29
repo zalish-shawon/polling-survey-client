@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from "../../provider/AuthProvider";
 
 const pages = ['Home','Surveys','Pricing'];
-const settings = ['Profile', 'Account', 'Dashboard'];
+const settings = ['Dashboard'];
 const Navbar = () => {
     
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -168,7 +168,7 @@ const Navbar = () => {
                             >
                                 {settings.map((setting) => (
                                     <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
+                                        <Typography textAlign="center"><Link to={`/${setting}/home`}>Dashboard</Link></Typography>
                                     </MenuItem>
                                 ))}
                                 <button onClick={handleLogout} type="button" className=" ml-3 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Log out</button>
