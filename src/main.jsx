@@ -24,6 +24,7 @@ import AllSurveys from './components/Surveys/AllSurveys.jsx';
 import SurveyEdit from './components/Surveys/SurveyEdit.jsx';
 import ResponseTable from './components/Response/ResponseTable.jsx';
 import PaymentsData from './components/Payment/PaymentsData.jsx';
+import ErrorPage from './components/404/ErrorPage.jsx';
 
 const queryClient = new QueryClient()
 
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {  
         path: "/",
@@ -81,7 +83,7 @@ const router = createBrowserRouter([
     element: <DashBoard></DashBoard>,
     children: [
       {
-        path: "stats",
+        path: "home",
         element: <Stats></Stats>
       },
       {

@@ -113,6 +113,7 @@ const SurveysDetails = () => {
         const report = form.report.value
         const reportData = {
             surveyId: _id,
+            surveyName: title,
             reporterName: user.displayName,
             report,
             date: new Date(),

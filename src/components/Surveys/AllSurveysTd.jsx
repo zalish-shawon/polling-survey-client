@@ -4,9 +4,15 @@ import { Link } from 'react-router-dom';
 import { Button } from 'flowbite-react';
 import { useState } from 'react';
 import Feedback from './Feedback';
+import { AiFillEdit, AiFillMessage } from 'react-icons/ai';
+import { MdUnpublished } from "react-icons/md";
+import useAxiosURL from '../../hooks/UseaxiosURL';
+import Swal from 'sweetalert2';
 
 
-const AllSurveysTd = ({ item }) => {
+
+const AllSurveysTd = ({ item, refetch }) => {
+    const axiosUrl = useAxiosURL();
     const [openModal, setOpenModal] = useState(false);
     const [feedbackData, setFeedbackData] = useState(''); // Set initial feedback data
 
@@ -15,6 +21,27 @@ const AllSurveysTd = ({ item }) => {
         setFeedbackData(data);
         setOpenModal(true);
       };
+
+      const handleUnpublised = (id) => {
+            const unpublishedData = {
+                surveyId: item._id,
+                surveyName: item.title,
+                surveyOwner: item.email,
+                message: "your data is not ok.survey has been unpublished",
+                status: 'unpublished',
+
+            }
+            axiosUrl.patch(`/surveys/${id}`, unpublishedData)
+            .then(res => {
+                if(res.data.modifiedCount > 0) {
+                    Swal.fire(
+                        'Unpublished this survey',
+                        'success'
+                      )
+                      refetch();
+                }
+            })
+      }
 
     return (
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -31,11 +58,19 @@ const AllSurveysTd = ({ item }) => {
                 {item.noVotes}
             </td>
             <td class="px-6 py-4">
+                <div className='flex items-center gap-1'>
                 <Link to={`/dashboard/updateSurvey/${item._id}`}>
-                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
+                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-[19px] py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><AiFillEdit></AiFillEdit></button>
                 </Link>
                 
-                <Button onClick={() => handleFeedbackClick(item._id)}>Feedback</Button>
+                <Button onClick={() => handleFeedbackClick(item._id)}><AiFillMessage></AiFillMessage></Button>
+                {
+                    item.status === 'unpublished'?
+                    <button disabled onClick={()=> handleUnpublised(item._id)} type="button" class="text-white bg-gray-300   font-medium rounded-lg text-base px-[19px] py-2.5   focus:outline-none "><MdUnpublished></MdUnpublished></button>
+                    :
+                    <button onClick={()=> handleUnpublised(item._id)} type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base px-[19px] py-2.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"><MdUnpublished></MdUnpublished></button>
+                }
+                </div>
 
                
                 <Feedback openModal={openModal} setOpenModal={setOpenModal} feedbackData={feedbackData}></Feedback>

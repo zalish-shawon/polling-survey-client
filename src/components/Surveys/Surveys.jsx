@@ -3,7 +3,8 @@ import SurveysCard from "./SurveysCard";
 import useSurveys from "../../hooks/useSurveys";
 
 const Surveys = () => {
-    const surveys = useSurveys();
+    const [surveys] = useSurveys();
+    const publishedSurvey = surveys.filter(item => item.status !== 'unpublished');
 
     return (
         <div>
@@ -12,7 +13,7 @@ const Surveys = () => {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 p-10 max-w-[1300px] mx-auto">
                 {
-                    surveys.map(item => <SurveysCard key={item._id} item={item} ></SurveysCard>)
+                    publishedSurvey.map(item => <SurveysCard key={item._id} item={item} ></SurveysCard>)
                 }
             </div>
         </div>

@@ -4,7 +4,7 @@ import useSurveys from "../../hooks/useSurveys";
 import AllSurveysTd from "./AllSurveysTd";
 
 const AllSurveys = () => {
-    const surveys = useSurveys();
+    const [surveys,refetch] = useSurveys();
 
 
     return (
@@ -49,7 +49,7 @@ const AllSurveys = () => {
                         <tbody>
                            
                            {
-                            surveys.map(item => <AllSurveysTd key={item._id} item={item}></AllSurveysTd>)
+                            surveys.map(item => <AllSurveysTd key={item._id} refetch={refetch} item={item}></AllSurveysTd>)
                            }
                             
                         </tbody>

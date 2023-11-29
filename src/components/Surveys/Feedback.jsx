@@ -16,7 +16,7 @@ const Feedback = ({ openModal, setOpenModal, feedbackData }) => {
     })
 
     const individualFeedback = comments.filter(item => item.surveyId === feedbackData);
-    console.log(individualFeedback);
+    // console.log(individualFeedback);
 
     return (
         <div>
