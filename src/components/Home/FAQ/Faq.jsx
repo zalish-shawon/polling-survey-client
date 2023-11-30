@@ -7,12 +7,10 @@ const Faq = () => {
                 <div className="max-w-xl sm:mx-auto lg:max-w-2xl">
                     <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
                         <div>
-                            <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-                                Brand new
-                            </p>
+                            
                         </div>
-                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-                            <span className="relative inline-block">
+                        <h2 className="max-w-lg border border-blue-50 p-2 mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+                            <span className="relative inline-block ">
                                 <svg
                                     viewBox="0 0 52 24"
                                     fill="currentColor"
@@ -35,13 +33,12 @@ const Faq = () => {
                                         height="24"
                                     />
                                 </svg>
-                                <span className="relative">The</span>
+                                <span className="relative">Faq❓</span>
                             </span>{' '}
-                            quick, brown fox jumps over a lazy dog
+                            
                         </h2>
                         <p className="text-base text-gray-700 md:text-lg">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                            accusantium doloremque rem aperiam, eaque ipsa quae.
+                        Here are some hypothetical answers based on the sample questions for a website-related survey
                         </p>
                     </div>
                 </div>
@@ -50,12 +47,10 @@ const Faq = () => {
                         <div className="space-y-8">
                             <div>
                                 <p className="mb-4 text-xl font-medium">
-                                    The quick, brown fox jumps over a lazy dog?
+                                Describe your experience navigating our website. What aspects were user-friendly, and where do you think improvements could be made?
                                 </p>
                                 <p className="text-gray-700">
-                                    Space, the final frontier. These are the voyages of the Starship
-                                    Enterprise. Its five-year mission: to explore strange new
-                                    worlds.
+                                The navigation on your website was generally smooth and intuitive. I particularly liked the clear menu structure, making it easy to find what I needed. However, the search function could be improved, as some relevant results were not displayed.
                                     <br />
                                     <br />
                                     Many say exploration is part of our destiny, but it’s actually
@@ -64,18 +59,13 @@ const Faq = () => {
                             </div>
                             <div>
                                 <p className="mb-4 text-xl font-medium">
-                                    The first mate and his Skipper too will do?
-                                </p>
+                                In your opinion, how relevant is the content on our website to your needs or interests? Provide specific examples to support your answer.                                </p>
                                 <p className="text-gray-700">
                                     Well, the way they make shows is, they make one show. That
                                     show's called a pilot.
                                     <br />
                                     <br />
-                                    Then they show that show to the people who make shows, and on
-                                    the strength of that one show they decide if they're going to
-                                    make more shows. Some pilots get picked and become television
-                                    programs.Some don't, become nothing. She starred in one of the
-                                    ones that became nothing.
+                                    The content on your website is quite relevant to my interests. I appreciate the variety of topics covered. For instance, the blog section provides valuable insights. However, adding more real-life case studies could enhance the practicality of the content.
                                 </p>
                             </div>
                             <div>
@@ -92,41 +82,28 @@ const Faq = () => {
                         <div className="space-y-8">
                             <div>
                                 <p className="mb-4 text-xl font-medium">
-                                    How much money you got on you?
+                                What are your thoughts on the overall design and layout of our website? Are there any specific elements that stood out to you, positively or negatively?
                                 </p>
                                 <p className="text-gray-700">
-                                    The first mate and his Skipper too will do their very best to
-                                    make the others comfortable in their tropic island nest.
-                                    <br />
-                                    <br />
-                                    Michael Knight a young loner on a crusade to champion the cause
-                                    of the innocent. The helpless. The powerless in a world of
-                                    criminals who operate above the law. Here he comes Here comes
-                                    Speed Racer. He's a demon on wheels.
+                                The overall design is modern and visually appealing. I liked the use of colors and images. However, on certain pages, the text felt a bit cramped, and the font size could be increased for better readability.
+                                    
+                                    
                                 </p>
                             </div>
                             <div>
                                 <p className="mb-4 text-xl font-medium">
-                                    Galaxies Orion's sword globular star cluster?
+                                Did you find any interactive elements on the website engaging? If so, please describe them and share your thoughts on how they enhanced your experience.
                                 </p>
                                 <p className="text-gray-700">
-                                    A business big enough that it could be listed on the NASDAQ goes
-                                    belly up. Disappears!
-                                    <br />
-                                    <br />
-                                    It ceases to exist without me. No, you clearly don't know who
-                                    you're talking to, so let me clue you in.
+                                The interactive quizzes on the website were a fun and engaging way to learn more about the products. The "Ask an Expert" feature also caught my attention, but it could be promoted more prominently on the homepage for better visibility.
                                 </p>
                             </div>
                             <div>
                                 <p className="mb-4 text-xl font-medium">
-                                    When has justice ever been as simple as a rule book?
+                                How satisfied are you with the website's performance and loading speed? Are there any pages or features that you found particularly slow or fast?
                                 </p>
                                 <p className="text-gray-700">
-                                    This is not about revenge. This is about justice. A lot of
-                                    things can change in twelve years, Admiral. Well, that's
-                                    certainly good to know. About four years. I got tired of hearing
-                                    how young I looked.
+                                The website's performance is generally good, and pages load quickly. Yet, I noticed a slight delay on the product pages, especially when loading images. Optimizing image sizes could significantly improve loading times.
                                 </p>
                             </div>
                         </div>

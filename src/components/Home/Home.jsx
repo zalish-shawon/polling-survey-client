@@ -3,6 +3,7 @@
 import { Link } from "react-router-dom";
 import Faq from "./FAQ/Faq";
 import Testimonial from "./Testimonial/Testimonial";
+import HowitWorks from "../HowitWorks/HowitWorks";
 
 
 
@@ -16,21 +17,19 @@ const Home = () => {
             <div className="max-w-xl mb-6">
               <div>
                 <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-                  New Colaboration
+                Describe your  
                 </p>
               </div>
               <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-                The quick, brown fox
+              Experience navigating
                 <br className="hidden md:block" />
                 jumps over{' '}
                 <span className="inline-block text-deep-purple-accent-400">
-                  a lazy dog
+                our website. 
                 </span>
               </h2>
               <p className="text-base text-gray-700 md:text-lg">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae. explicabo.
+              The content on your website is quite relevant to my interests. I appreciate the variety of topics covered. 
               </p>
             </div>
             <div className="flex flex-col items-center md:flex-row">
@@ -70,6 +69,9 @@ const Home = () => {
 
       <Testimonial></Testimonial>
         
+      </div>
+      <div>
+        <HowitWorks></HowitWorks>
       </div>
     </div>
   );

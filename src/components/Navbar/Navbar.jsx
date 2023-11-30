@@ -126,7 +126,7 @@ const Navbar = () => {
                                 textDecoration: 'none',
                             }}
                         >
-                            LOGO
+                            PollSurvey
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent: 'center' } }}>
                             {pages.map((page) => (
