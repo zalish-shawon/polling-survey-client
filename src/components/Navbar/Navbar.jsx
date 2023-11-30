@@ -13,10 +13,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from "../../provider/AuthProvider";
 
-const pages = ['Home','Surveys','Pricing'];
+const pages = ['Home','Surveys','Pricing', 'About','Contact'];
 const settings = ['Dashboard'];
 const Navbar = () => {
     
@@ -133,11 +133,11 @@ const Navbar = () => {
                                 <Button 
                                     key={page}
                                     onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block',  }}
+                                    sx={{ my: 2, color: 'white', display: 'block', }}
                                 >
-                                    <Link  to={`/${page}`}>
+                                    <NavLink to={`/${page}`}>
                                         {page}
-                                        </Link>
+                                        </NavLink>
                                 </Button>
                             ))}
                         </Box>

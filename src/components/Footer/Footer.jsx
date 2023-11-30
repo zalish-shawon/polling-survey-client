@@ -27,18 +27,14 @@ const Footer = () => {
               <rect x="14" y="11" width="7" height="12" />
             </svg>
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-              Company
+              PollSurvey
             </span>
           </a>
           <div className="mt-4 lg:max-w-sm">
             <p className="text-sm text-gray-800">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam.
+            Welcome to pollingSurvey app, where we believe in the power of insights and the impact of collective opinions. Our journey began with a simple yet powerful idea
             </p>
-            <p className="mt-4 text-sm text-gray-800">
-              Eaque ipsa quae ab illo inventore veritatis et quasi architecto
-              beatae vitae dicta sunt explicabo.
-            </p>
+            
           </div>
         </div>
         <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">

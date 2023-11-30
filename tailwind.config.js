@@ -334,6 +334,7 @@ export default {
     backgroundColor: ['responsive', 'hover', 'focus', 'group-hover'],
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require("tailgrids/plugin")
 ]
 }

@@ -29,6 +29,8 @@ import PrivateRoute from './components/Routes/PrivateRoute.jsx';
 import AdminRoute from './components/Routes/AdminRoute.jsx';
 import SurveyorRoute from './components/Routes/SurveyorRoute.jsx';
 import CombinedRoute from './components/Routes/CombinedRoute.jsx';
+import About from './components/About/About.jsx';
+import Contact from './components/Contact/Contact.jsx';
 
 const queryClient = new QueryClient()
 
@@ -77,6 +79,14 @@ const router = createBrowserRouter([
         path: "/payment",
         element: <PrivateRoute><Payment></Payment></PrivateRoute>
       },
+      {
+        path: "/about",
+        element: <About></About>
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>
+      }
       
       
   ]
