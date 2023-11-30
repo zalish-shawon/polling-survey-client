@@ -63,12 +63,12 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <PrivateRoute><SurveysDetails></SurveysDetails></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.id}`)
+        loader: ({params}) => fetch(`https://polling-and-survey-server.vercel.app/surveys/${params.id}`)
       },
       {
         path: "/results/:id",
         element: <SurveyResults></SurveyResults>,
-        loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.id}`)
+        loader: ({params}) => fetch(`https://polling-and-survey-server.vercel.app/surveys/${params.id}`)
       },
       {
         path: "/pricing",
@@ -115,7 +115,7 @@ const router = createBrowserRouter([
       {
         path: 'updateSurvey/:id',
         element: <SurveyEdit></SurveyEdit>,
-        loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.id}`)
+        loader: ({params}) => fetch(`https://polling-and-survey-server.vercel.app/surveys/${params.id}`)
 
       },
       {

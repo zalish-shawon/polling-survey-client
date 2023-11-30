@@ -1,8 +1,22 @@
-# React + Vite
+# CareerLoom
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Image](/public/ss.png)
 
-Currently, two official plugins are available:
+- https://careerloom-89809.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Project Features
+- This is a full-stack online polling survey app.
+- Users can log in via Facebook using Firebase authentication and also create a new account.
+- Users can participate in online polling.
+- Pro users can complete their payments using online payment (Stripe).
+- There are admin, surveyor, and user dashboards. The admin can manage all users and surveys.
+- Pro users can also make comments, and users can report a survey.
+- Surveyors have the ability to create and edit surveys.
+
+# Faced Challenge
+
+- In the reporting section, users can submit reports. After receiving reports, the admin unpublishes the survey and sends a message to the survey creator.
+- Using Material UI for the first time, I only implemented a navbar, and it was challenging for me.
+
+
+
