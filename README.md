@@ -1,8 +1,8 @@
-# CareerLoom
+# Polling and Survey App
 
 ![Image](/public/ss.png)
 
-- https://careerloom-89809.web.app/
+- https://online-polliing-survey.web.app/
 
 # Project Features
 - This is a full-stack online polling survey app.
