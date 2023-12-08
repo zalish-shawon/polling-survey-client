@@ -2,7 +2,8 @@
 
 ![Image](/public/ss.png)
 
-- https://online-polliing-survey.web.app/
+- Live link: https://online-polliing-survey.web.app/
+- Server link: https://github.com/zalish-shawon/polling-survey-server
 
 # Project Features
 - This is a full-stack online polling survey app.
@@ -13,10 +14,9 @@
 - Pro users can also make comments, and users can report a survey.
 - Surveyors have the ability to create and edit surveys.
 
-# Faced Challenge
+**Technology**: React.js, Tailwind CSS, MongoDB, Express.js, Node.js, Private route, Firebase Authentication.
 
-- In the reporting section, users can submit reports. After receiving reports, the admin unpublishes the survey and sends a message to the survey creator.
-- Using Material UI for the first time, I only implemented a navbar, and it was challenging for me.
+
 
 
 
