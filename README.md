@@ -13,6 +13,9 @@
 - There are admin, surveyor, and user dashboards. The admin can manage all users and surveys.
 - Pro users can also make comments, and users can report a survey.
 - Surveyors have the ability to create and edit surveys.
+- the admin has the authority to unpublish the poll. 
+- The admin can provide feedback to the survey creator if any poll requires unpublishing.
+
 
 **Technology**: React.js, Tailwind CSS, MongoDB, Express.js, Node.js, Private route, Firebase Authentication.
 
